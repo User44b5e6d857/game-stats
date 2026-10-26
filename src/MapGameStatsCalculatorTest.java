@@ -353,12 +353,34 @@ public class MapGameStatsCalculatorTest {
   @Test 
   public void gameCountOnePerson()
   {
-    String scoreData = "Alice 10\n"
-    + "Alice 20\n"
-    + "Alice 30\n";
+    String scoreData = "Baya 10\n"
+    + "Baya 20\n"
+    + "Baya 30\n";
     GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
 
-    int actual = calculator.gameCount("Alice");
+    int actual = calculator.gameCount("Baya");
     assertEquals(3, actual);
+  }
+
+  @Test
+  public void highScoreOneGame() {
+    String scoreData = "Nupur 10\n"
+        + "Baya 30\n"
+        + "Xinting 25\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    int actual = calculator.highScore("Baya");
+    assertEquals(30, actual);
+  }
+
+  @Test
+  public void highScoreNegativeScores() {
+    String scoreData = "Baya -10\n"
+        + "Baya -30\n"
+        + "Baya -25\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    int actual = calculator.highScore("Baya");
+    assertEquals(-10, actual);
   }
 }
