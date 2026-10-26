@@ -383,4 +383,26 @@ public class MapGameStatsCalculatorTest {
     int actual = calculator.highScore("Baya");
     assertEquals(-10, actual);
   }
+
+  @Test
+  public void highestScorerOnePerson() {
+    String scoreData = "Baya -10\n"
+        + "Baya -30\n"
+        + "Baya -25\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    String actual = calculator.highestScorer();
+    assertEquals("Baya", actual);
+  }
+
+  @Test
+  public void highestScorerSame() {
+    String scoreData = "Baya 10\n"
+        + "Nupur 10\n"
+        + "Xinting 10\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    String actual = calculator.highestScorer();
+    assertEquals("Baya", actual);
+  }
 }
