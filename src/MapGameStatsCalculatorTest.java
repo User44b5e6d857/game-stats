@@ -405,4 +405,30 @@ public class MapGameStatsCalculatorTest {
     String actual = calculator.highestScorer();
     assertEquals("Baya", actual);
   }
+
+  @Test
+  public void getAverageScoreDecimal() {
+    String scoreData = "Nupur 11\n"
+        + "Baya 30\n"
+        + "Xinting 25\n"
+        + "Nupur 40\n"
+        + "Baya 50\n"
+        + "Nupur 20\n"
+        + "Baya 60\n"
+        + "Nupur 30\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    double actual = calculator.getAverageScore("Nupur");
+    assertEquals(25.25, actual);
+  }
+
+  @Test
+  public void getAverageScoreOneGame() {
+    // Arrange
+    String scoreData = "Nupur 10\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    double actual = calculator.getAverageScore("Nupur");
+    assertEquals(10, actual);
+  }
 }
